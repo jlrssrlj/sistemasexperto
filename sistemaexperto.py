@@ -18,7 +18,13 @@ def modalidades():
 
     for i in range(n):
         nombre = input(f"\nIngrese el nombre de la modalidad #{i+1} (ej: Presencial, Virtual, Distancia): ")
-        costo = int(input(f"Ingrese el costo total de la carrera en {nombre} (en pesos): "))
+
+        while True:
+            try:
+                costo = int(input(f"Ingrese el costo total de la carrera en {nombre} (en pesos): "))
+                break
+            except ValueError:
+                print("Ingrese un valor valido para el costo")
         tiempo = int(input(f"Ingrese la duración de la carrera en {nombre} (años): "))
         modalidades[nombre] = {"costo": costo, "tiempo": tiempo}
     return modalidades
