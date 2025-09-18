@@ -6,7 +6,15 @@
 
 def modalidades():
     modalidades = {}
-    n = int(input("¿Cuántas modalidades desea evaluar? (ej: 3): "))
+    while True:
+        try:
+            n = int(input("¿Cuántas modalidades desea evaluar? (ej: 3): "))
+            if n <= 0:
+                print("Debe ser mayor a 0")
+                continue
+            break
+        except ValueError:
+            print("Ingrese un valor valido")
 
     for i in range(n):
         nombre = input(f"\nIngrese el nombre de la modalidad #{i+1} (ej: Presencial, Virtual, Distancia): ")
@@ -39,9 +47,8 @@ def a_star(modalidades):
 
 # Menú principal
 def sistema_experto():
-    print("===================================")
-    print(" SISTEMA EXPERTO - ELECCIÓN DE MODALIDAD DE CARRERA")
-    print("===================================")
+    menu = """Elección de modalidad"""
+    print(menu)
 
     modalidad = modalidades()
 
@@ -50,10 +57,10 @@ def sistema_experto():
     mejor_greedy = greedy(modalidad)
     mejor_a_star = a_star(modalidad)
 
-    print(f"\n▶ UCS (Más económico): {mejor_ucs[0]} → Costo: {mejor_ucs[1]['costo']} - Tiempo: {mejor_ucs[1]['tiempo']} años")
-    print(f"▶ Greedy (Más rápido): {mejor_greedy[0]} → Costo: {mejor_greedy[1]['costo']} - Tiempo: {mejor_greedy[1]['tiempo']} años")
-    print(f"▶ A* (Balance costo/tiempo): {mejor_a_star[0]} → Costo: {mejor_a_star[1]['costo']} - Tiempo: {mejor_a_star[1]['tiempo']} años")
+    print(f"\nMás económico: {mejor_ucs[0]} → Costo: {mejor_ucs[1]['costo']} - Tiempo: {mejor_ucs[1]['tiempo']} años")
+    print(f"Más rápido: {mejor_greedy[0]} → Costo: {mejor_greedy[1]['costo']} - Tiempo: {mejor_greedy[1]['tiempo']} años")
+    print(f"Balance costo/tiempo: {mejor_a_star[0]} → Costo: {mejor_a_star[1]['costo']} - Tiempo: {mejor_a_star[1]['tiempo']} años")
     
-# Ejecutar sistema
+
 if __name__ == "__main__":
     sistema_experto()
