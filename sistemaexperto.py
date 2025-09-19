@@ -3,9 +3,9 @@
 # Sistema Experto para Selección de Modalidad de Carrera
 
 # ======================================
-def nombre_modalidades():
+def nombre_modalidades(i):
     while True:
-            nombre = input(f"\nIngrese el nombre de la modalidad  (ej: Presencial, Virtual, Distancia): ")
+            nombre = input(f"\nIngrese el nombre de la modalidad #{i+1}: (ej: Presencial, Virtual, Distancia): ")
             if nombre.replace(" "," ").isalpha():
                 return nombre
             else:
@@ -25,7 +25,7 @@ def modalidades():
             print("Ingrese un valor valido")
 
     for i in range(n):
-        nombre = nombre_modalidades()
+        nombre = nombre_modalidades(i)
         while True:
             try:
                 costo = float(input(f"Ingrese el costo total de la carrera en {nombre} (en pesos): "))
@@ -38,11 +38,6 @@ def modalidades():
                 
             except ValueError:
                 print("Ingrese un valor valido ")
-        #while True:
-         #   try:
-          #      
-           # except ValueError:
-            #    print("Valor no valido")
 
             
     return modalidades
