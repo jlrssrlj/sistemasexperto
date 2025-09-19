@@ -21,18 +21,29 @@ def modalidades():
 
         while True:
             try:
-                costo = int(input(f"Ingrese el costo total de la carrera en {nombre} (en pesos): "))
+                costo = float(input(f"Ingrese el costo total de la carrera en {nombre} (en pesos): "))
+                tiempo = float(input(f"Ingrese la duración de la carrera en {nombre} (años): "))
+                modalidades[nombre] = {"costo": costo, "tiempo": tiempo}
+                if tiempo <= 0:
+                    print("Dato erroneo")
+                    continue
                 break
+                
             except ValueError:
-                print("Ingrese un valor valido para el costo")
-        tiempo = int(input(f"Ingrese la duración de la carrera en {nombre} (años): "))
-        modalidades[nombre] = {"costo": costo, "tiempo": tiempo}
+                print("Ingrese un valor valido ")
+        #while True:
+         #   try:
+          #      
+           # except ValueError:
+            #    print("Valor no valido")
+
+            
     return modalidades
 
 
 # Algoritmo UCS (selecciona el más económico)
 """Algoritmo de búsqueda no informada utilizado para encontrar el camino de costo
-mínimo entre un nodo raiz y un nodo destido en un grafo ponderado"""
+mínimo entre un nodo raiz y un nodo destino en un grafo ponderado"""
 def ucs(modalidades):
     return min(modalidades.items(), key=lambda x: x[1]["costo"])
 
@@ -53,7 +64,7 @@ def a_star(modalidades):
 
 # Menú principal
 def sistema_experto():
-    menu = """Elección de modalidad"""
+    menu = """Analisis costo/tiempo en una carrera"""
     print(menu)
 
     modalidad = modalidades()
